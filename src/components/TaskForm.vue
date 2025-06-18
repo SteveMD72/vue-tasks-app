@@ -1,38 +1,60 @@
 <script setup lang="ts">
+// Imports
 import { ref } from "vue";
 
+// State
+const error = ref("");
 const newTask = ref("");
+
+// Emits
 const emit = defineEmits<{
-  addTask: [newTask: string];
+	addTask: [newTask: string];
 }>();
 
+// Methods
 const formSubmitted = () => {
-  emit("addTask", newTask.value);
-  newTask.value = "";
+	if (newTask.value.trim()) {
+		emit("addTask", newTask.value.trim());
+		newTask.value = "";
+		error.value = "";
+	} else {
+		error.value = "Please enter a valid task.";
+	}
 };
 </script>
 
 <template>
-  <form @submit.prevent="formSubmitted">
-    <label>
-      new task
-      <input type="text" v-model="newTask" />
-    </label>
-    <div class="button-container">
-      <button>Add Task</button>
-    </div>
-  </form>
+	<form @submit.prevent="formSubmitted">
+		<label>
+			New task
+			<input
+				type="text"
+				v-model="newTask"
+				:aria-invalid="!!error || undefined"
+				aria-describedby="invalid-helper"
+				@input="error = ''"
+			/>
+			<small
+				v-if="error"
+				id="invalid-helper"
+				>{{ error }}</small
+			>
+		</label>
+		<div class="button-container">
+			<button>Add Task</button>
+		</div>
+	</form>
 </template>
 
-<style scoped>
+<style type="text/scss">
 main {
-  max-width: 1200px;
-  margin: 1rem auto;
+	max-width: 1200px;
+	margin: 1rem auto;
 }
 
 .button-container {
-  display: flex;
-  justify-content: end;
-  margin-top: 1rem;
+	display: flex;
+	justify-content: end;
+	gap: 0.5rem;
 }
 </style>
