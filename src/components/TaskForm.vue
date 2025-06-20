@@ -45,16 +45,3 @@ const formSubmitted = () => {
 		</div>
 	</form>
 </template>
-
-<style type="text/scss">
-main {
-	max-width: 1200px;
-	margin: 1rem auto;
-}
-
-.button-container {
-	display: flex;
-	justify-content: end;
-	gap: 0.5rem;
-}
-</style>

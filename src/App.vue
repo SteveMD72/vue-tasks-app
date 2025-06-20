@@ -6,6 +6,9 @@ import TaskForm from "./components/TaskForm.vue";
 import TaskList from "./components/TaskList.vue";
 import FilterButton from "./components/FilterButton.vue";
 
+// Styles
+import "./styles/base.scss";
+
 // Types
 import type { Task, TaskFilter } from "./types";
 
