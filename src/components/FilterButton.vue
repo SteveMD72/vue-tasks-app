@@ -14,7 +14,7 @@ const emit = defineEmits<{
 <template>
 	<button
 		class="secondary"
-		@click="$emit('setFilter', props.filter)"
+		@click="emit('setFilter', props.filter)"
 		:class="{ contrast: props.filter === props.currentFilter }"
 	>
 		{{ props.filter }}

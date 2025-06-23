@@ -23,7 +23,6 @@ test.describe("Vue Tasks App", () => {
 		await page.getByPlaceholder("Enter a new task").fill("Task 3");
 		await page.getByRole("button", { name: /add/i }).click();
 
-		// Count the rendered tasks (adjust selector to match your TaskList rendering)
 		const tasks = await page.locator('[data-testid="task-item"]');
 		await expect(tasks).toHaveCount(3);
 	});
@@ -47,5 +46,20 @@ test.describe("Vue Tasks App", () => {
 
 		// Verify the task is deleted
 		await expect(tasks).toHaveCount(0);
+	});
+
+	test("Should allow the user to mark a task as Done", async ({ page }) => {
+		// Add a task
+		await page.getByPlaceholder("Enter a new task").fill("Task to toggle");
+		await page.getByRole("button", { name: /add/i }).click();
+
+		// Ensure the task is added
+		const tasks = await page.locator('[data-testid="task-item"]');
+		await expect(tasks).toHaveCount(1);
+
+		// Toggle the task as completed
+		await page.getByRole("checkbox").check();
+
+		await expect(page.getByText("1 / 1 Completed")).toBeVisible();
 	});
 });
