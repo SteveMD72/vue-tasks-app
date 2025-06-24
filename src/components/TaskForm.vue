@@ -33,6 +33,7 @@ const formSubmitted = () => {
 				:aria-invalid="!!error || undefined"
 				aria-describedby="invalid-helper"
 				@input="error = ''"
+				placeholder="Enter a new task"
 			/>
 			<small
 				v-if="error"

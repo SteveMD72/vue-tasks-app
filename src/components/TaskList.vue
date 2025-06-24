@@ -1,6 +1,5 @@
 <script setup lang="ts">
-// Types
-import type { Task } from "./types";
+import type { Task } from "../types";
 
 const props = defineProps<{
 	tasks: Task[];
@@ -22,6 +21,7 @@ const emit = defineEmits<{
 			class="task"
 			v-for="task in props.tasks"
 			:key="task.id"
+			data-testid="task-item"
 		>
 			<label>
 				<input
