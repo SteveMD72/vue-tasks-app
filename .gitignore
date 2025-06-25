@@ -31,3 +31,4 @@ coverage/
 /playwright/.cache/
 
 .github/workflows/playwright.yml
+.firebase
